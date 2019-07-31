@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+	<!-- 第1步：先定义一个包 -->
+	<!-- <package name="mypck" extends="struts-default"> 第2步：定义一个action，配置跳转信息 
+		name 类似于Servlet @WebServlet("/IndexServlet") class 对应于自己写的Action类 当不写method属性时，默认调用的是execute 
+		http://xxxx/xxx/Index.action <action name="Index" class="ssh_001.IndexAction"> 
+		配置不同字符串，跳转到不同的页面 当Action中的execute方法，返回字符串success，就跳转到index.jsp <result name="success">index.jsp</result> 
+		</action> </package> -->
+	<!-- bean标签用于创建一个JavaBean实例 -->
+	<!-- constant标签用于struts2默认行为标签 -->
+	<!-- package标签 包标签 用于区分不同的请求文件标签比如前台请求 后台请求 -->
+	<!-- include标签 用于引入其他的xml配置文件 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.serve.static.browserCache"
+		value="false"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.devMode" value="trueR"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<package name="userlogin" extends="struts-default">
+		<action name="loginAction"
+			class="com.foxconn.action.LoginAction1">
+			<result name="success">/04/index.jsp</result>
+		</action>
+		<action name="mloginAction"
+			class="com.foxconn.action.MLoginAction">
+			<result name="success">/04/index.jsp</result>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="sloginAction"
+			class="com.foxconn.action.SLoginAction">
+			<result name="success">/04/index.jsp</result>
+		</action>
+	</package>
+	<package name="test" namespace="/new" extends="struts-default">
+		<action name="login" class="com.foxconn.action.LoginAction"
+			method="execute">
+			<result name="success">/02/success.jsp</result>
+			<result name="false">/02/false.jsp</result>
+		</action>
+	</package>
+</struts>
